@@ -23,5 +23,17 @@ services:
     env_file:
       - .env
 
+  grafana:
+    image: grafana/grafana
+    depends_on:
+      - prometheus
+    ports:
+      - 9092:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+    env_file:
+      - .env
+
 volumes:
-    prometheus_data:
+  prometheus_data:
+  grafana_data:
