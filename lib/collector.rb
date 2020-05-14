@@ -10,7 +10,6 @@
 require_relative 'command_executor'
 require_relative 'monitor'
 
-COLLECTOR_COMMAND = 'ps ax -o pid,user,%mem,comm'
 osname = CommandExecutor.execute('uname')
 monitor = Monitor.new(osname)
 
