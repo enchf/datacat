@@ -10,7 +10,9 @@
 require_relative 'command_executor'
 require_relative 'monitor'
 
-osname = CommandExecutor.execute('uname')
+include CommandExecutor
+
+osname = execute('uname')
 monitor = Monitor.new(osname)
 
 PUSHGATEWAY_HOST = ENV['PUSHGATEWAY_HOST']

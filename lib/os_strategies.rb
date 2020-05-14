@@ -15,7 +15,7 @@ module OSStrategies
   # Strategy for Alpine Linux.
   class LinuxStrategy
     def hostname
-      CommandExecutor.execute('cat /etc/hostname')
+      execute('cat /etc/hostname')
     end
 
     ##
@@ -30,24 +30,24 @@ module OSStrategies
     #    45     1 root     R     1576   0%   0   0% top -n 1 -b
     ##
     def collect
-      CommandExecutor.multiline('top -n 1 -b')
-                     .reverse
-                     .map(&:strip)
-                     .reject(&:empty?)
-                     .take_while { |line| !line.start_with?('PID') }
-                     .map { |line| line.split(%r{\s+}, 9) }
-                     .map { |tokens| PROCESS_DATA_FIELDS.zip([tokens[0], tokens.last, hostname, tokens[4]]).to_h }
+      multiline('top -n 1 -b')
+        .reverse
+        .map(&:strip)
+        .reject(&:empty?)
+        .take_while { |line| !line.start_with?('PID') }
+        .map { |line| line.split(%r{\s+}, 9) }
+        .map { |tokens| PROCESS_DATA_FIELDS.zip([tokens[0], tokens.last, hostname, tokens[4]]).to_h }
     end 
   end
   
   # Strategy for common MacOS.
   class MacStrategy
     def hostname
-      CommandExecutor.execute('hostname')
+      execute('hostname')
     end
     
     def collect
-      CommandExecutor.multiline('top -l 1 -o -mem -stats pid,command,mem')
+      multiline('top -l 1 -o -mem -stats pid,command,mem')
     end
   end
 
@@ -57,6 +57,6 @@ module OSStrategies
   }.freeze
 
   def self.for(osname)
-    STRATEGIES.fetch(osname, FailStrategy).new
+    STRATEGIES.fetch(osname, FailStrategy).new.extend(CommandExecutor)
   end
 end
