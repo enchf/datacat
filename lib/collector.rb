@@ -21,7 +21,4 @@ PUSHER_COMMAND = "echo \"%{data}\" | curl --data-binary @- #{PUSHGATEWAY_HOST}/m
 DATA_TEMPLATE = "# TYPE cpu_usage gauge\n" \
                 "memory_usage_%{pid}{label=\"Memory Usage\",command=\"%{command}\",instance=\"%{instance}\",pid=\"%{pid}\"} %{memory_usage}\n"
 
-sample_process = { pid: 123, command: 'ls -l', instance: monitor.hostname, memory_usage: 650000 }
-
-puts DATA_TEMPLATE % sample_process
-puts PUSHER_COMMAND % { pid: 123, data: 'Lala' }
+puts monitor.collect
