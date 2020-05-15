@@ -9,6 +9,8 @@ WORKDIR /datacat
 COPY . .
 
 RUN rm Gemfile.lock
+RUN rm *.gem
+
 RUN gem install bundler
 RUN bundle install
 RUN gem build datacat.gemspec -o datacat-latest.gem

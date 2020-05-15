@@ -33,6 +33,17 @@ services:
       - grafana_data:/var/lib/grafana
     env_file:
       - .env
+  
+  monitor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - pushgateway
+      - prometheus
+      - grafana
+    env_file:
+      - .env
 
 volumes:
   prometheus_data:
