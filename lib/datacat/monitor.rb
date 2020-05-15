@@ -36,7 +36,7 @@ module DataCat
           end
 
         puts 'Pushing to Prometheus...'  
-        Prometheus::Client::Push.new(hostname).add(@prometheus)  
+        Prometheus::Client::Push.new(hostname, nil, PUSHGATEWAY_HOST).add(@prometheus)  
         sleep(@delay)
       end
     end

@@ -21,7 +21,7 @@ module DataCat
       ##
       def collect
         parse_process_list(multiline('top -n 1 -b'), split_tokens: 9) do |tokens| 
-          [tokens[0], tokens.last, hostname, tokens[4]]
+          [tokens[0], tokens.last, hostname, tokens[4].to_i]
         end
       end 
     end
