@@ -30,7 +30,7 @@ module DataCat
       loop do
         collect
           .each do |entry|
-            puts "Updating value of process #{entry[:pid]} to #{entry[:memory_usage]}"
+            puts "Updating value of process #{entry[:pid]} (command: #{entry[:command]}) to #{entry[:memory_usage]}"
             @memory_usage.set(entry[:memory_usage],
                               labels: { process: entry[:pid] })
           end

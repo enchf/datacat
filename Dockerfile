@@ -3,10 +3,9 @@ FROM ruby:2.6.5-alpine3.9
 RUN apk update && apk add build-base git bash
 
 RUN mkdir /datacat
-VOLUME /datacat
 WORKDIR /datacat
 
-COPY . .
+ADD . .
 
 RUN rm Gemfile.lock
 RUN rm *.gem
