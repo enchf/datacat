@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 # frozen_string_literal: true
 
 # Question 1
@@ -7,6 +9,6 @@
 # https://github.com/obfuscurity/synthesize. Please do not use an agent such as Telegraf or
 # Collectd. We would like to see how you would code this :)
 
-require_relative 'monitor'
+require 'datacat'
 
-Monitor.new.start
+DataCat::Monitor.new.start
