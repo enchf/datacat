@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
     s.name        = 'datacat'
-    s.version     = '0.1.2'
+    s.version     = '0.1.3'
     s.date        = '2020-05-15'
     s.summary     = "A process monitor client"
     s.description = "Process monitor utility reporting to Prometheus through Pushgateway."
@@ -14,5 +14,6 @@ Gem::Specification.new do |s|
 
     s.executables << 'datacat'
 
+    s.add_development_dependency 'irb'
     s.add_runtime_dependency 'prometheus-client'
   end
