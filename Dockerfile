@@ -18,4 +18,4 @@ RUN gem install datacat
 
 LABEL maintainer="Ernesto Espinosa <e.ernesto.espinosa@gmail.com>"
 
-CMD ["datacat"]
+CMD ruby /datacat/scripts/random_sorting.rb & datacat
